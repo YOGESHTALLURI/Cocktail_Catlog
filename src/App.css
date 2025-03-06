@@ -1,0 +1,164 @@
+
+.cocktail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+.cocktail-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 245, 230, 0.8); 
+  z-index: 0;
+}
+
+.search-form, .fancy-hr, .loading, .error, .no-results, .cocktail-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  border: 2px solid #ff99cc;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.search-input:focus {
+  border-color: #66ff99;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.fancy-hr {
+  border: 0;
+  height: 3px;
+  background: linear-gradient(to right, #ff99cc, #66ff99, #ffcc66);
+  margin: 20px 0;
+}
+
+.loading {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  color: #ffcc66;
+  text-align: center;
+  animation: pulse 1.5s infinite;
+}
+
+.error {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  color: #ff3366;
+  text-align: center;
+  animation: shake 0.3s ease-in-out;
+}
+
+.no-results {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5rem;
+  color: #ff6699;
+  text-align: center;
+}
+
+.cocktail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 0 10px;
+}
+
+.cocktail-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cocktail-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #ffcc66;
+}
+
+.card-text {
+  padding: 15px;
+  text-align: center;
+}
+
+.card-text h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.4rem;
+  color: #333;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.cocktail-card:hover .card-text h3 {
+  color: #ff6699;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .search-input {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .cocktail-card {
+    margin: 0 5px;
+  }
+
+  .card-image img {
+    height: 150px;
+  }
+
+  .card-text h3 {
+    font-size: 1.2rem;
+  }
+
+  .loading, .error, .no-results {
+    font-size: 1.3rem;
+  }
+}
