@@ -20,7 +20,7 @@ const App = () => {
         setDrinksData(data.drinks);
       } else {
         setDrinksData([]);
-        throw new Error("No cocktails found!");
+        throw new Error("No drinks match your search—try something else! 🍹");
       }
 
       setLoading(false);
@@ -36,13 +36,12 @@ const App = () => {
   };
 
   useEffect(() => {
-    // Only fetch if searchTerm is not empty
     if (searchTerm.trim()) {
       const correctURL = `${URL}${searchTerm}`;
       fetchDrink(correctURL);
     } else {
-      setDrinksData([]); // Clear data if no search term
-      setIsError({ status: false, msg: "" }); // Ensure no error on initial load
+      setDrinksData([]);
+      setIsError({ status: false, msg: "" });
     }
   }, [searchTerm]);
 
@@ -69,7 +68,19 @@ const App = () => {
         <div className="cocktail-grid">
           {drinksData.length > 0 ? (
             drinksData.map((eachDrink) => {
-              const { idDrink, strDrink, strDrinkThumb } = eachDrink;
+              const {
+                idDrink,
+                strDrink,
+                strDrinkThumb,
+                strInstructions,
+                ...ingredients
+              } = eachDrink;
+              const ingredientList = Object.keys(ingredients)
+                .filter(
+                  (key) => key.startsWith("strIngredient") && ingredients[key]
+                )
+                .map((key) => ingredients[key]);
+
               return (
                 <div key={idDrink} className="cocktail-card">
                   <div className="card-image">
@@ -77,14 +88,20 @@ const App = () => {
                   </div>
                   <div className="card-text">
                     <h3>{strDrink}</h3>
+                    <h4>Ingredients:</h4>
+                    <ul className="ingredient-list">
+                      {ingredientList.map((ingredient, index) => (
+                        <li key={index}>{ingredient}</li>
+                      ))}
+                    </ul>
+                    <h4>Instructions:</h4>
+                    <p>{strInstructions || "No instructions available."}</p>
                   </div>
                 </div>
               );
             })
           ) : (
-            <h3 className="no-results">
-              Ready to find a cocktail? Search above! 🍷
-            </h3>
+            <h3 className="no-results">Start mixing—search for a drink! 🍸</h3>
           )}
         </div>
       )}
