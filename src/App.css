@@ -1,4 +1,4 @@
-
+/* Example3.css */
 .cocktail-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -16,7 +16,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 245, 230, 0.8); 
+  background: rgba(255, 245, 230, 0.8); /* Warm, light overlay */
   z-index: 0;
 }
 
@@ -94,6 +94,10 @@
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure card takes full height */
 }
 
 .cocktail-card:hover {
@@ -101,16 +105,27 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+.card-image {
+  width: 100%;
+  /* Removed fixed height to allow dynamic sizing */
+  /* Changed object-fit to contain to show full image */
+  object-fit: contain;
+  background-color: #fff; /* White background to avoid transparency issues */
+}
+
 .card-image img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-bottom: 2px solid #ffcc66;
+  height: auto; /* Allows image to scale naturally */
+  display: block; /* Removes extra space below image */
 }
 
 .card-text {
   padding: 15px;
   text-align: center;
+  flex-grow: 1; /* Allows text to push down and fill space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card-text h3 {
@@ -119,6 +134,36 @@
   color: #333;
   margin: 0;
   transition: color 0.3s ease;
+}
+
+.card-text h4 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  color: #555;
+  margin: 10px 0 5px;
+}
+
+.ingredient-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+  text-align: left;
+}
+
+.ingredient-list li {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.card-text p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  text-align: left;
+  padding: 0 10px;
 }
 
 .cocktail-card:hover .card-text h3 {
@@ -151,11 +196,23 @@
   }
 
   .card-image img {
-    height: 150px;
+    height: auto; /* Maintains aspect ratio on mobile */
   }
 
   .card-text h3 {
     font-size: 1.2rem;
+  }
+
+  .card-text h4 {
+    font-size:1rem;
+  }
+
+  .ingredient-list li {
+    font-size: 0.9rem;
+  }
+
+  .card-text p {
+    font-size: 0.9rem;
   }
 
   .loading, .error, .no-results {
