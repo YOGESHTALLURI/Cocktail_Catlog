@@ -1,4 +1,4 @@
-/* Example3.css */
+
 .cocktail-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -110,19 +110,19 @@
   /* Removed fixed height to allow dynamic sizing */
   /* Changed object-fit to contain to show full image */
   object-fit: contain;
-  background-color: #fff; /* White background to avoid transparency issues */
+  background-color: #fff; 
 }
 
 .card-image img {
   width: 100%;
-  height: auto; /* Allows image to scale naturally */
-  display: block; /* Removes extra space below image */
+  height: auto; 
+  display: block;
 }
 
 .card-text {
   padding: 15px;
   text-align: center;
-  flex-grow: 1; /* Allows text to push down and fill space */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -196,7 +196,7 @@
   }
 
   .card-image img {
-    height: auto; /* Maintains aspect ratio on mobile */
+    height: auto;
   }
 
   .card-text h3 {
